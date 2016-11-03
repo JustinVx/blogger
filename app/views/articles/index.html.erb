@@ -3,9 +3,12 @@
 <ul id="articles">
   <% @articles.each do |article| %>
     <li>
-      <%#= article.title %>
       <%= link_to article.title, article_path(article) %>
-      <%#= article.body %>
+      <% article.tags.each do |tag| %>
+        <%= link_to tag.name, tag_path(tag) %>
+      <% end %>
+      <p><%= article.body %></p>
+      <%= link_to "Comments (#{article.comments.count})", article_path(article) %>
     </li>
   <% end %>
 </ul>
